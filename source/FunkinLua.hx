@@ -43,7 +43,7 @@ import Discord;
 #end
 
 #if android
-import android.Hardware;
+import android.Tools;
 #end
 
 using StringTools;
@@ -1991,7 +1991,7 @@ class FunkinLua {
 
 		Lua_helper.add_callback(lua, "vibration", function(milliseconds:Int) {
 			#if android
-			Hardware.vibrate(milliseconds);
+			Tools.vibrate(milliseconds);
 			#end
 		});
 

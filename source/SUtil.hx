@@ -44,15 +44,15 @@ class SUtil
 	public static function doTheCheck()
 	{
 		#if android
-		if (!Permissions.getGrantedPermissions().contains(Permissions.READ_EXTERNAL_STORAGE) || !Permissions.getGrantedPermissions().contains(PermissionsList.WRITE_EXTERNAL_STORAGE))
+		if (!Permissions.getGrantedPermissions().contains(Permissions.READ_EXTERNAL_STORAGE) || !Permissions.getGrantedPermissions().contains(Permissions.WRITE_EXTERNAL_STORAGE))
 		{
-			Permissions.requestPermissions([Permissions.READ_EXTERNAL_STORAGE, PermissionsList.WRITE_EXTERNAL_STORAGE]);
+			Permissions.requestPermissions([Permissions.READ_EXTERNAL_STORAGE, Permissions.WRITE_EXTERNAL_STORAGE]);
 			SUtil.applicationAlert('Permissions', "if you accepted the permissions all good if not expect a crash" + '\n' + 'Press Ok to see what happens');//shitty way to stop the app
 		}
 
-		if (Permissions.getGrantedPermissions().contains(Permissions.READ_EXTERNAL_STORAGE) || Permissions.getGrantedPermissions().contains(PermissionsList.WRITE_EXTERNAL_STORAGE))
+		if (Permissions.getGrantedPermissions().contains(Permissions.READ_EXTERNAL_STORAGE) || Permissions.getGrantedPermissions().contains(Permissions.WRITE_EXTERNAL_STORAGE))
 		{
-			if (!FileSystem.exists(Tools.getExternalStorageDirectory() + '/' + '.' + Application.current.meta.get('file')))
+			if (!FileSystem.exists(Environment.getExternalStorageDirectory() + '/' + '.' + Application.current.meta.get('file')))
 				FileSystem.createDirectory(Environment.getExternalStorageDirectory() + '/' + '.' + Application.current.meta.get('file'));
 
 			if (!FileSystem.exists(SUtil.getPath() + 'assets') && !FileSystem.exists(SUtil.getPath() + 'mods'))
